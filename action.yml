@@ -1,0 +1,45 @@
+name: 'Migrate Database'
+description: 'Action to run database migrations using the tern command'
+author: 'Marat F'
+
+inputs:
+  conn_string:
+    description: 'Database connection string'
+    required: true
+  database:
+    description: 'Database name'
+    required: false
+  host:
+    description: 'Database host'
+    required: false
+  port:
+    description: 'Database port'
+    required: false
+  user:
+    description: 'Database user'
+    required: false
+  password:
+    description: 'Database password'
+    required: false
+  destination:
+    description: 'Destination migration version'
+    required: false
+    default: 'last'
+  version_table:
+    description: 'Version table name'
+    required: false
+    default: 'public.schema_version'
+
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/lemana-tech/tern:v2.2.2-rc.0'
+  args:
+    - migrate
+    - --conn-string ${{ inputs.conn_string }}
+    - --database ${{ inputs.database }}
+    - --host ${{ inputs.host }}
+    - --port ${{ inputs.port }}
+    - --user ${{ inputs.user }}
+    - --password ${{ inputs.password }}
+    - --destination ${{ inputs.destination }}
+    - --version-table ${{ inputs.version_table }}
