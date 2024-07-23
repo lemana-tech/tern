@@ -25,6 +25,10 @@ inputs:
     description: 'Destination migration version'
     required: false
     default: 'last'
+  migrations:
+    description: 'Path to migrations directory'
+    required: false
+    default: '.'
   version_table:
     description: 'Version table name'
     required: false
@@ -42,4 +46,9 @@ runs:
     - --user ${{ inputs.user }}
     - --password ${{ inputs.password }}
     - --destination ${{ inputs.destination }}
+    - --migrations ${{ inputs.migrations }}
     - --version-table ${{ inputs.version_table }}
+
+branding:
+  icon: 'database'
+  color: 'white'
