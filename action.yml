@@ -1,4 +1,4 @@
-name: 'Migrate Database'
+name: 'Tern Migrate'
 description: 'Action to run database migrations using the tern command'
 author: 'Marat F'
 
